@@ -403,7 +403,7 @@
 
     <!-- Основной контент -->
     <div class="container">
-        <div class="video-icon" onclick="playCelebrationSound()">🎬</div>
+        <div class="video-icon" onclick="createFireworks()">🎬</div>
         <h1>Специальное поздравление для <span class="name-highlight">Валентины Чагиной</span></h1>
         
         <div class="heart" onclick="createHearts()">❤️</div>
@@ -452,14 +452,12 @@
         function showCreatorsModal() {
             creatorsModal.classList.add('active');
             createFireworks();
-            playCelebrationSound();
         }
         
         // Закрыть окно создателей
         function closeCreatorsModal() {
             creatorsModal.classList.remove('active');
             createConfetti();
-            playCelebrationSound();
         }
         
         // Функция для скачивания видеофайла
@@ -501,7 +499,6 @@
             // Создаем конфетти и фейерверки
             createConfetti();
             createFireworks();
-            playCelebrationSound();
             
             // Возвращаем исходный вид кнопки через 3 секунды
             setTimeout(() => {
@@ -563,7 +560,6 @@
                     }
                 }, 21000);
             }
-            playCelebrationSound();
         }
         
         // Создание фейерверков
@@ -624,31 +620,6 @@
         function getRandomColor() {
             const colors = ['#ff0084', '#ff6b6b', '#ff8e53', '#fff176', '#81c784', '#4fc3f7', '#ba68c8'];
             return colors[Math.floor(Math.random() * colors.length)];
-        }
-        
-        // Воспроизведение звука праздника
-        function playCelebrationSound() {
-            // Создаем звук через Web Audio API
-            try {
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const oscillator = audioContext.createOscillator();
-                const gainNode = audioContext.createGain();
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-                
-                oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // Нота C5
-                oscillator.frequency.setValueAtTime(659.25, audioContext.currentTime + 0.1); // Нота E5
-                oscillator.frequency.setValueAtTime(783.99, audioContext.currentTime + 0.2); // Нота G5
-                
-                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
-                
-                oscillator.start(audioContext.currentTime);
-                oscillator.stop(audioContext.currentTime + 0.5);
-            } catch (e) {
-                console.log('Звук не поддерживается');
-            }
         }
         
         // Показать сообщение
@@ -728,10 +699,7 @@
         
         // Добавляем интерактивность элементам
         document.querySelector('.heart').addEventListener('click', createHearts);
-        document.querySelector('.video-icon').addEventListener('click', () => {
-            createFireworks();
-            playCelebrationSound();
-        });
+        document.querySelector('.video-icon').addEventListener('click', createFireworks);
         
         // Добавляем эффект при наведении на имя
         document.querySelector('.name-highlight').addEventListener('mouseenter', function() {
