@@ -9,177 +9,343 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #ff0084 0%, #ff6b6b 50%, #ff8e53 100%);
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe8ec 50%, #ffdfe6 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            color: white;
+            color: #333;
             overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 182, 193, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 182, 193, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 182, 193, 0.08) 0%, transparent 50%);
+            z-index: -1;
         }
         
         .container {
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            padding: 50px;
+            background-color: rgba(255, 255, 255, 0.98);
+            border-radius: 32px;
+            box-shadow: 
+                0 20px 40px rgba(214, 51, 132, 0.08),
+                0 8px 16px rgba(214, 51, 132, 0.04),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+            padding: 60px 50px;
             text-align: center;
-            animation: fadeIn 1s ease;
-            border: 5px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        h1 {
-            color: #d63384;
-            margin-bottom: 20px;
-            font-size: 2.8rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            line-height: 1.2;
-        }
-        
-        .subtitle {
-            color: #666;
-            margin-bottom: 40px;
-            font-size: 1.3rem;
-            line-height: 1.5;
-        }
-        
-        .heart {
-            color: #ff0084;
-            font-size: 3rem;
-            margin: 20px 0;
-            animation: heartbeat 1.5s infinite;
-            cursor: pointer;
+            animation: gentleAppear 1.2s ease-out;
+            position: relative;
+            overflow: hidden;
             transition: transform 0.3s ease;
         }
         
-        .heart:hover {
-            transform: scale(1.2);
+        .container:hover {
+            transform: translateY(-5px);
         }
         
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #ff8fab, #fb6f92, #ff477e);
+            border-radius: 32px 32px 0 0;
         }
         
-        .download-section {
-            margin: 40px 0;
-            padding: 40px;
-            background: linear-gradient(to right, rgba(255, 107, 107, 0.1), rgba(255, 142, 83, 0.1));
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.2);
-            border: 2px dashed #ff6b6b;
+        @keyframes gentleAppear {
+            0% { 
+                opacity: 0; 
+                transform: translateY(40px) scale(0.98);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0) scale(1);
+            }
         }
         
-        .download-btn {
-            background: linear-gradient(to right, #ff0084, #ff6b6b);
-            color: white;
-            border: none;
-            padding: 25px 60px;
-            font-size: 1.8rem;
-            font-weight: bold;
-            border-radius: 60px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 25px rgba(255, 0, 132, 0.4);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .download-btn:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 15px 35px rgba(255, 0, 132, 0.6);
-            background: linear-gradient(to right, #ff6b6b, #ff0084);
-        }
-        
-        .download-btn:active {
-            transform: translateY(-2px);
-        }
-        
-        .download-icon {
-            font-size: 2.2rem;
-        }
-        
-        .message {
-            margin-top: 30px;
-            padding: 25px;
-            background: #fff5f7;
-            border-radius: 15px;
-            color: #d63384;
-            font-size: 1.2rem;
-            line-height: 1.6;
-            text-align: center;
-            border-left: 5px solid #ff0084;
-            border-right: 5px solid #ff0084;
-            font-weight: 500;
-        }
-        
-        .video-info {
-            margin-top: 25px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            color: #666;
-            font-size: 1rem;
+        .header-section {
+            margin-bottom: 50px;
         }
         
         .video-icon {
-            font-size: 4rem;
-            margin: 20px 0;
-            color: #ff0084;
+            font-size: 5rem;
+            margin-bottom: 25px;
+            color: #ff8fab;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: inline-block;
+            filter: drop-shadow(0 4px 12px rgba(255, 142, 171, 0.2));
         }
         
         .video-icon:hover {
-            transform: rotate(15deg) scale(1.1);
+            transform: scale(1.1) rotate(10deg);
+            color: #fb6f92;
         }
         
-        .footer {
-            margin-top: 40px;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1rem;
-            text-align: center;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            max-width: 800px;
+        h1 {
+            color: #2d2d2d;
+            margin-bottom: 15px;
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ff8fab 0%, #fb6f92 50%, #ff477e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
         
         .name-highlight {
-            color: #ff0084;
-            font-weight: bold;
-            font-size: 1.1em;
-            position: relative;
             display: inline-block;
+            position: relative;
+            padding: 0 10px;
+            font-weight: 800;
+            color: #ff477e;
+            text-shadow: 0 2px 4px rgba(255, 71, 126, 0.15);
         }
         
         .name-highlight::after {
             content: '';
             position: absolute;
+            bottom: 5px;
+            left: 10px;
+            right: 10px;
+            height: 6px;
+            background: linear-gradient(90deg, transparent, rgba(255, 71, 126, 0.2), transparent);
+            border-radius: 3px;
+            z-index: -1;
+        }
+        
+        .greeting-text {
+            color: #666;
+            margin-top: 25px;
+            font-size: 1.3rem;
+            line-height: 1.7;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+        }
+        
+        .heart-section {
+            margin: 40px 0;
+            position: relative;
+        }
+        
+        .heart {
+            color: #ff8fab;
+            font-size: 4.5rem;
+            margin: 20px auto;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: inline-block;
+            animation: gentleHeartbeat 2.5s ease-in-out infinite;
+            filter: drop-shadow(0 4px 12px rgba(255, 142, 171, 0.25));
+        }
+        
+        .heart:hover {
+            transform: scale(1.2);
+            color: #ff477e;
+        }
+        
+        @keyframes gentleHeartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+        
+        .download-section {
+            margin: 60px 0;
+            padding: 50px;
+            background: linear-gradient(135deg, rgba(255, 245, 247, 0.8), rgba(255, 240, 245, 0.9));
+            border-radius: 24px;
+            box-shadow: 
+                0 12px 24px rgba(251, 111, 146, 0.08),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 182, 193, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .download-section:hover {
+            box-shadow: 
+                0 16px 32px rgba(251, 111, 146, 0.12),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+            transform: translateY(-3px);
+        }
+        
+        .download-section::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
             bottom: -2px;
-            left: 0;
+            background: linear-gradient(45deg, #ff8fab, #fb6f92, #ff477e, #ff8fab);
+            border-radius: 25px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .download-section:hover::before {
+            opacity: 0.1;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #ff8fab 0%, #fb6f92 50%, #ff477e 100%);
+            color: white;
+            border: none;
+            padding: 28px 65px;
+            font-size: 1.7rem;
+            font-weight: 600;
+            border-radius: 70px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 
+                0 12px 25px rgba(255, 71, 126, 0.2),
+                0 4px 12px rgba(255, 71, 126, 0.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            margin: 25px 0;
+            text-transform: none;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
-            height: 3px;
-            background: linear-gradient(to right, #ff0084, #ff6b6b);
-            border-radius: 2px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 20px 40px rgba(255, 71, 126, 0.3),
+                0 8px 20px rgba(255, 71, 126, 0.15);
+        }
+        
+        .download-btn:hover::before {
+            left: 100%;
+        }
+        
+        .download-btn:active {
+            transform: translateY(-4px);
+        }
+        
+        .download-icon {
+            font-size: 2.4rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .download-btn:hover .download-icon {
+            transform: translateY(-3px);
+        }
+        
+        .message {
+            margin-top: 35px;
+            padding: 28px;
+            background: white;
+            border-radius: 18px;
+            color: #666;
+            font-size: 1.2rem;
+            line-height: 1.7;
+            text-align: center;
+            border: 1px solid rgba(255, 182, 193, 0.4);
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.05);
+            font-weight: 400;
+            letter-spacing: 0.1px;
+            position: relative;
+        }
+        
+        .message::before {
+            content: '💝';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 0 15px;
+            font-size: 1.5rem;
+        }
+        
+        .video-info {
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 16px;
+            color: #777;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            border: 1px solid rgba(255, 182, 193, 0.3);
+        }
+        
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .info-icon {
+            font-size: 2rem;
+            color: #ff8fab;
+        }
+        
+        .footer {
+            margin-top: 50px;
+            color: #888;
+            font-size: 1.1rem;
+            text-align: center;
+            padding: 30px;
+            max-width: 900px;
+            line-height: 1.6;
+            letter-spacing: 0.2px;
+        }
+        
+        .footer p {
+            margin: 8px 0;
+        }
+        
+        .footer-signature {
+            margin-top: 20px;
+            color: #ff8fab;
+            font-weight: 600;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
         }
         
         /* Модальное окно создателей */
@@ -189,14 +355,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(255, 245, 247, 0.95);
+            backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 9999;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.5s ease;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         
         .creators-modal.active {
@@ -205,97 +372,145 @@
         }
         
         .creators-content {
-            background: linear-gradient(135deg, #ff0084 0%, #ff6b6b 50%, #ff8e53 100%);
-            padding: 60px 40px;
-            border-radius: 25px;
+            background: white;
+            padding: 70px 50px;
+            border-radius: 32px;
             text-align: center;
-            max-width: 500px;
+            max-width: 550px;
             width: 90%;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            transform: scale(0.9);
-            transition: transform 0.5s ease;
-            border: 3px solid white;
+            box-shadow: 
+                0 25px 50px rgba(214, 51, 132, 0.1),
+                0 10px 20px rgba(214, 51, 132, 0.05);
+            transform: translateY(30px) scale(0.95);
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 1px solid rgba(255, 182, 193, 0.4);
+            position: relative;
+            overflow: hidden;
         }
         
         .creators-modal.active .creators-content {
-            transform: scale(1);
+            transform: translateY(0) scale(1);
+        }
+        
+        .creators-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #ff8fab, #fb6f92, #ff477e);
+        }
+        
+        .creators-heart {
+            font-size: 4rem;
+            color: #ff8fab;
+            margin-bottom: 25px;
+            animation: gentleHeartbeat 2.5s ease-in-out infinite;
         }
         
         .creators-title {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #555;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
         
         .creators-names {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             margin: 30px 0;
-            color: white;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            background: linear-gradient(135deg, #ff8fab 0%, #fb6f92 50%, #ff477e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            line-height: 1.3;
+            padding: 0 20px;
+            text-shadow: 0 4px 8px rgba(255, 142, 171, 0.15);
         }
         
         .close-modal {
-            margin-top: 30px;
-            padding: 15px 40px;
-            background: white;
-            color: #ff0084;
+            margin-top: 35px;
+            padding: 18px 45px;
+            background: linear-gradient(135deg, #ff8fab 0%, #fb6f92 100%);
+            color: white;
             border: none;
             border-radius: 50px;
             font-size: 1.2rem;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 8px 20px rgba(255, 142, 171, 0.2);
+            letter-spacing: 0.5px;
         }
         
         .close-modal:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 12px 25px rgba(255, 142, 171, 0.3);
         }
         
-        /* Конфетти */
-        .confetti {
+        /* Кнопка повторного просмотра создателей */
+        .show-creators-btn {
             position: fixed;
-            width: 15px;
-            height: 15px;
-            pointer-events: none;
-            z-index: 1000;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            color: #ff8fab;
+            border: 1px solid rgba(255, 142, 171, 0.3);
+            border-radius: 50px;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 100;
+            box-shadow: 
+                0 8px 20px rgba(255, 142, 171, 0.1),
+                0 2px 8px rgba(255, 142, 171, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
-        /* Дополнительные элементы */
-        .floating-hearts {
+        .show-creators-btn:hover {
+            background: linear-gradient(135deg, #ff8fab 0%, #fb6f92 100%);
+            color: white;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 12px 25px rgba(255, 142, 171, 0.2),
+                0 4px 12px rgba(255, 142, 171, 0.1);
+            border-color: transparent;
+        }
+        
+        /* Плавающие элементы */
+        .floating-elements {
             position: fixed;
             pointer-events: none;
             z-index: -1;
+            width: 100%;
+            height: 100%;
         }
         
-        .floating-heart {
+        .floating-element {
             position: absolute;
             font-size: 24px;
-            color: rgba(255, 255, 255, 0.3);
-            animation: float 20s infinite linear;
+            opacity: 0.1;
+            animation: floatElement 25s infinite linear;
+            color: #ff8fab;
         }
         
-        @keyframes float {
+        @keyframes floatElement {
             0% {
                 transform: translateY(100vh) rotate(0deg);
                 opacity: 0;
             }
             10% {
-                opacity: 1;
+                opacity: 0.08;
             }
             90% {
-                opacity: 1;
+                opacity: 0.08;
             }
             100% {
                 transform: translateY(-100px) rotate(360deg);
@@ -303,88 +518,83 @@
             }
         }
         
-        /* Кнопка повторного просмотра создателей */
-        .show-creators-btn {
+        /* Конфетти */
+        .confetti {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 2px solid white;
-            border-radius: 50px;
-            padding: 12px 25px;
-            font-size: 1rem;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            z-index: 100;
-        }
-        
-        .show-creators-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
-        }
-        
-        /* Анимация фейерверков */
-        .firework {
-            position: fixed;
+            width: 12px;
+            height: 12px;
             pointer-events: none;
-            z-index: 999;
+            z-index: 1000;
+            border-radius: 50%;
+            opacity: 0.8;
         }
         
         @media (max-width: 768px) {
             .container {
-                padding: 30px 20px;
+                padding: 40px 25px;
+                max-width: 95%;
             }
             
             h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
             
             .download-btn {
-                padding: 20px 40px;
-                font-size: 1.5rem;
+                padding: 22px 40px;
+                font-size: 1.4rem;
                 width: 100%;
-                max-width: 350px;
+                max-width: 320px;
             }
             
-            .subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .creators-title {
+            .download-icon {
                 font-size: 2rem;
             }
             
-            .creators-names {
-                font-size: 1.8rem;
+            .video-info {
+                padding: 20px;
+                gap: 25px;
             }
             
             .creators-content {
-                padding: 40px 20px;
+                padding: 50px 30px;
+            }
+            
+            .creators-names {
+                font-size: 2rem;
+            }
+            
+            .show-creators-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 0.9rem;
             }
         }
         
         @media (max-width: 480px) {
             h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .download-btn {
-                font-size: 1.3rem;
-                padding: 18px 30px;
+                font-size: 1.2rem;
+                padding: 20px 30px;
             }
             
-            .download-icon {
-                font-size: 1.8rem;
+            .video-icon {
+                font-size: 4rem;
             }
             
-            .creators-title {
-                font-size: 1.8rem;
+            .heart {
+                font-size: 3.5rem;
+            }
+            
+            .download-section {
+                padding: 30px 20px;
             }
             
             .creators-names {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -393,22 +603,32 @@
     <!-- Модальное окно создателей -->
     <div class="creators-modal active" id="creatorsModal">
         <div class="creators-content">
-            <div class="heart">🎬</div>
+            <div class="creators-heart">🎬</div>
             <h2 class="creators-title">Это поздравление создали:</h2>
             <div class="creators-names">Любящий сын & Анастасия Алексеевна</div>
-            <div class="heart">❤️</div>
+            <div class="creators-heart">❤️</div>
             <button class="close-modal" onclick="closeCreatorsModal()">Начать просмотр</button>
         </div>
     </div>
 
+    <!-- Плавающие элементы -->
+    <div class="floating-elements" id="floatingElements"></div>
+
     <!-- Основной контент -->
     <div class="container">
-        <div class="video-icon" onclick="createFireworks()">🎬</div>
-        <h1>Специальное поздравление для <span class="name-highlight">Валентины Чагиной</span></h1>
+        <div class="header-section">
+            <div class="video-icon" onclick="createGentleEffects()">🎬</div>
+            <h1>Специальное поздравление для <span class="name-highlight">Валентины Чагиной</span></h1>
+            
+            <p class="greeting-text">
+                Дорогая Валентина, примите самые тёплые и искренние поздравления! 
+                Это видео создано с большой любовью и самыми добрыми пожеланиями.
+            </p>
+        </div>
         
-        <div class="heart" onclick="createHearts()">❤️</div>
-        
-        <p class="subtitle">Для скачивания поздравления нажмите кнопку ниже</p>
+        <div class="heart-section">
+            <div class="heart" onclick="createHearts()">❤️</div>
+        </div>
         
         <div class="download-section">
             <button class="download-btn" onclick="downloadVideo()">
@@ -417,47 +637,71 @@
             </button>
             
             <div class="message">
-                Нажмите на кнопку выше, чтобы скачать видео-поздравление.<br>
-                Файл будет загружен в формате MP4.
+                Нажмите на кнопку выше, чтобы скачать персональное видео-поздравление.<br>
+                Файл будет сохранён в формате MP4 в вашей папке "Загрузки".
             </div>
             
             <div class="video-info">
-                📁 Формат: MP4<br>
-                ⏱️ Длительность: 1-2 минуты<br>
-                🎵 С музыкальным сопровождением
+                <div class="info-item">
+                    <div class="info-icon">📁</div>
+                    <div>Формат: MP4</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">⏱️</div>
+                    <div>Длительность: 1-2 минуты</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🎵</div>
+                    <div>С музыкальным сопровождением</div>
+                </div>
             </div>
         </div>
     </div>
     
     <div class="footer">
         <p>Искреннее поздравление создано специально для Валентины Чагиной</p>
-        <p>От Любящего сына и Анастасии Алексеевны</p>
-        <p>© С наилучшими пожеланиями</p>
+        <p>С любовью и самыми тёплыми пожеланиями</p>
+        <div class="footer-signature">Любящий сын & Анастасия Алексеевна</div>
     </div>
 
     <!-- Кнопка для повторного просмотра создателей -->
     <button class="show-creators-btn" onclick="showCreatorsModal()">
-        👨‍👩‍👦 Создатели
+        <span>👨‍👩‍👦</span>
+        <span>Создатели</span>
     </button>
-
-    <!-- Контейнер для плавающих сердечек -->
-    <div class="floating-hearts" id="floatingHearts"></div>
 
     <script>
         // Основные элементы
         const creatorsModal = document.getElementById('creatorsModal');
-        const floatingHearts = document.getElementById('floatingHearts');
+        const floatingElements = document.getElementById('floatingElements');
+        
+        // Создаем плавающие элементы при загрузке
+        function createFloatingElements() {
+            const elements = ['❤️', '🎀', '✨', '🌸', '💝', '🎁', '🎉'];
+            
+            for (let i = 0; i < 15; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                element.innerHTML = elements[Math.floor(Math.random() * elements.length)];
+                element.style.left = Math.random() * 100 + 'vw';
+                element.style.animationDuration = (20 + Math.random() * 20) + 's';
+                element.style.animationDelay = Math.random() * 10 + 's';
+                element.style.fontSize = (20 + Math.random() * 15) + 'px';
+                
+                floatingElements.appendChild(element);
+            }
+        }
         
         // Показать окно создателей
         function showCreatorsModal() {
             creatorsModal.classList.add('active');
-            createFireworks();
+            createGentleEffects();
         }
         
         // Закрыть окно создателей
         function closeCreatorsModal() {
             creatorsModal.classList.remove('active');
-            createConfetti();
+            createGentleConfetti();
         }
         
         // Функция для скачивания видеофайла
@@ -468,7 +712,7 @@
             // Создаем временную ссылку для скачивания
             const tempLink = document.createElement('a');
             tempLink.href = videoUrl;
-            tempLink.download = 'С_Праздником.mp4';
+            tempLink.download = 'Поздравление_Валентине_Чагиной.mp4';
             tempLink.style.display = 'none';
             
             // Добавляем ссылку в документ и кликаем по ней
@@ -484,142 +728,138 @@
             const originalBg = btn.style.background;
             
             btn.innerHTML = '<span class="download-icon">✅</span><span>Скачивание началось!</span>';
-            btn.style.background = 'linear-gradient(to right, #00b09b, #96c93d)';
-            btn.style.boxShadow = '0 10px 25px rgba(0, 176, 155, 0.4)';
+            btn.style.background = 'linear-gradient(135deg, #8ce99a 0%, #69db7c 100%)';
+            btn.style.boxShadow = '0 12px 25px rgba(105, 219, 124, 0.2)';
             
             // Добавляем анимацию сердца
             document.querySelector('.heart').style.animation = 'none';
             setTimeout(() => {
-                document.querySelector('.heart').style.animation = 'heartbeat 1.5s infinite';
+                document.querySelector('.heart').style.animation = 'gentleHeartbeat 2.5s ease-in-out infinite';
             }, 10);
             
             // Показываем сообщение
             showMessage('Видео-поздравление скачивается! Проверьте папку "Загрузки"');
             
-            // Создаем конфетти и фейерверки
-            createConfetti();
-            createFireworks();
+            // Создаем мягкие эффекты
+            createGentleConfetti();
+            createGentleEffects();
             
             // Возвращаем исходный вид кнопки через 3 секунды
             setTimeout(() => {
                 btn.innerHTML = originalText;
                 btn.style.background = originalBg;
-                btn.style.boxShadow = '0 10px 25px rgba(255, 0, 132, 0.4)';
+                btn.style.boxShadow = '0 12px 25px rgba(255, 71, 126, 0.2)';
             }, 3000);
         }
         
-        // Создание конфетти
-        function createConfetti() {
-            const colors = ['#ff0084', '#ff6b6b', '#ff8e53', '#ffffff'];
-            const confettiCount = 150;
+        // Создание мягкого конфетти
+        function createGentleConfetti() {
+            const colors = ['#ff8fab', '#fb6f92', '#ff477e', '#ffb6c1', '#ffc2d1'];
+            const confettiCount = 100;
             
             for (let i = 0; i < confettiCount; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.top = '-20px';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-                
-                document.body.appendChild(confetti);
-                
-                // Анимация конфетти
-                const animation = confetti.animate([
-                    { transform: `translateY(0) rotate(0deg)`, opacity: 1 },
-                    { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 720}deg)`, opacity: 0 }
-                ], {
-                    duration: 2000 + Math.random() * 2000,
-                    easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
-                });
-                
-                animation.onfinish = () => {
-                    if (document.body.contains(confetti)) {
-                        document.body.removeChild(confetti);
-                    }
-                };
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-20px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                    confetti.style.width = Math.random() * 10 + 8 + 'px';
+                    confetti.style.height = Math.random() > 0.5 ? confetti.style.width : '2px';
+                    
+                    document.body.appendChild(confetti);
+                    
+                    // Анимация конфетти
+                    const animation = confetti.animate([
+                        { 
+                            transform: `translateY(0) rotate(0deg)`, 
+                            opacity: 0.8 
+                        },
+                        { 
+                            transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, 
+                            opacity: 0 
+                        }
+                    ], {
+                        duration: 2000 + Math.random() * 2000,
+                        easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
+                    });
+                    
+                    animation.onfinish = () => {
+                        if (document.body.contains(confetti)) {
+                            document.body.removeChild(confetti);
+                        }
+                    };
+                }, i * 20);
             }
         }
         
         // Создание плавающих сердечек
         function createHearts() {
-            for (let i = 0; i < 10; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'floating-heart';
-                heart.innerHTML = '❤️';
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = (15 + Math.random() * 15) + 's';
-                heart.style.animationDelay = Math.random() * 5 + 's';
-                
-                floatingHearts.appendChild(heart);
-                
-                // Удаляем сердечко после анимации
-                setTimeout(() => {
-                    if (floatingHearts.contains(heart)) {
-                        floatingHearts.removeChild(heart);
-                    }
-                }, 21000);
-            }
-        }
-        
-        // Создание фейерверков
-        function createFireworks() {
-            const fireworkCount = 8;
+            const heartsContainer = document.createElement('div');
+            heartsContainer.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 1000;
+            `;
             
-            for (let i = 0; i < fireworkCount; i++) {
-                setTimeout(() => {
-                    const firework = document.createElement('div');
-                    firework.className = 'firework';
-                    firework.style.left = Math.random() * 80 + 10 + 'vw';
-                    firework.style.top = Math.random() * 50 + 20 + 'vh';
-                    
-                    // Создаем частицы фейерверка
-                    for (let j = 0; j < 30; j++) {
-                        setTimeout(() => {
-                            const particle = document.createElement('div');
-                            particle.style.position = 'absolute';
-                            particle.style.width = '6px';
-                            particle.style.height = '6px';
-                            particle.style.backgroundColor = getRandomColor();
-                            particle.style.borderRadius = '50%';
-                            
-                            const angle = Math.random() * Math.PI * 2;
-                            const distance = 50 + Math.random() * 100;
-                            const duration = 800 + Math.random() * 500;
-                            
-                            particle.animate([
-                                { transform: 'translate(0, 0) scale(1)', opacity: 1 },
-                                { transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0)`, opacity: 0 }
-                            ], {
-                                duration: duration,
-                                easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
-                            });
-                            
-                            firework.appendChild(particle);
-                            
-                            setTimeout(() => {
-                                if (firework.contains(particle)) {
-                                    firework.removeChild(particle);
-                                }
-                            }, duration);
-                        }, j * 20);
+            for (let i = 0; i < 12; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.style.position = 'absolute';
+                heart.style.fontSize = (24 + Math.random() * 20) + 'px';
+                heart.style.color = `rgba(255, ${143 + Math.random() * 50}, ${171 + Math.random() * 50}, 0.8)`;
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = '100vh';
+                heart.style.filter = 'drop-shadow(0 4px 8px rgba(0,0,0,0.1))';
+                
+                heartsContainer.appendChild(heart);
+                
+                // Анимация сердечка
+                const animation = heart.animate([
+                    { 
+                        transform: 'translateY(0) scale(0.5) rotate(0deg)', 
+                        opacity: 0.8 
+                    },
+                    { 
+                        transform: `translateY(-${window.innerHeight + 100}px) scale(1) rotate(${Math.random() * 360}deg)`, 
+                        opacity: 0 
                     }
-                    
-                    document.body.appendChild(firework);
-                    
-                    setTimeout(() => {
-                        if (document.body.contains(firework)) {
-                            document.body.removeChild(firework);
-                        }
-                    }, 2000);
-                }, i * 300);
+                ], {
+                    duration: 3000 + Math.random() * 2000,
+                    easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
+                });
+                
+                animation.onfinish = () => {
+                    if (heartsContainer.contains(heart)) {
+                        heartsContainer.removeChild(heart);
+                    }
+                };
             }
+            
+            document.body.appendChild(heartsContainer);
+            
+            setTimeout(() => {
+                if (document.body.contains(heartsContainer)) {
+                    document.body.removeChild(heartsContainer);
+                }
+            }, 5000);
         }
         
-        // Случайный цвет
-        function getRandomColor() {
-            const colors = ['#ff0084', '#ff6b6b', '#ff8e53', '#fff176', '#81c784', '#4fc3f7', '#ba68c8'];
-            return colors[Math.floor(Math.random() * colors.length)];
+        // Мягкие визуальные эффекты
+        function createGentleEffects() {
+            createGentleConfetti();
+            
+            // Анимация контейнера
+            const container = document.querySelector('.container');
+            container.style.transform = 'translateY(-8px)';
+            setTimeout(() => {
+                container.style.transform = 'translateY(-5px)';
+            }, 100);
         }
         
         // Показать сообщение
@@ -628,28 +868,37 @@
             messageDiv.textContent = text;
             messageDiv.style.cssText = `
                 position: fixed;
-                top: 30px;
+                top: 40px;
                 left: 50%;
                 transform: translateX(-50%);
-                background: rgba(0, 0, 0, 0.85);
-                color: white;
+                background: rgba(255, 255, 255, 0.95);
+                color: #555;
                 padding: 20px 35px;
-                border-radius: 15px;
+                border-radius: 18px;
                 z-index: 1000;
-                font-weight: 600;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-                animation: slideDown 0.4s ease;
-                border: 2px solid #ff0084;
+                font-weight: 500;
+                box-shadow: 
+                    0 15px 35px rgba(255, 142, 171, 0.15),
+                    0 5px 15px rgba(255, 142, 171, 0.1);
+                animation: slideDown 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+                border: 1px solid rgba(255, 182, 193, 0.4);
                 max-width: 90%;
                 text-align: center;
                 font-size: 1.1rem;
+                backdrop-filter: blur(10px);
             `;
             
             const style = document.createElement('style');
             style.textContent = `
                 @keyframes slideDown {
-                    from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
-                    to { transform: translateX(-50%) translateY(0); opacity: 1; }
+                    from { 
+                        transform: translateX(-50%) translateY(-80px); 
+                        opacity: 0; 
+                    }
+                    to { 
+                        transform: translateX(-50%) translateY(0); 
+                        opacity: 1; 
+                    }
                 }
             `;
             document.head.appendChild(style);
@@ -668,22 +917,22 @@
         
         // Инициализация при загрузке
         document.addEventListener('DOMContentLoaded', function() {
+            // Создаем плавающие элементы
+            createFloatingElements();
+            
             // Показываем окно создателей через 0.5 секунды после загрузки
             setTimeout(() => {
                 showCreatorsModal();
             }, 500);
             
-            // Создаем плавающие сердечки при загрузке
-            createHearts();
-            
             // Анимация элементов контейнера
             const elements = document.querySelectorAll('.container > *');
             elements.forEach((el, index) => {
                 el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
+                el.style.transform = 'translateY(25px)';
                 
                 setTimeout(() => {
-                    el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                    el.style.transition = 'opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
                     el.style.opacity = '1';
                     el.style.transform = 'translateY(0)';
                 }, index * 200);
@@ -699,15 +948,16 @@
         
         // Добавляем интерактивность элементам
         document.querySelector('.heart').addEventListener('click', createHearts);
-        document.querySelector('.video-icon').addEventListener('click', createFireworks);
+        document.querySelector('.video-icon').addEventListener('click', createGentleEffects);
         
         // Добавляем эффект при наведении на имя
         document.querySelector('.name-highlight').addEventListener('mouseenter', function() {
-            this.style.color = '#ff6b6b';
+            this.style.transform = 'scale(1.05)';
+            this.style.transition = 'transform 0.3s ease';
         });
         
         document.querySelector('.name-highlight').addEventListener('mouseleave', function() {
-            this.style.color = '#ff0084';
+            this.style.transform = 'scale(1)';
         });
     </script>
 </body>
